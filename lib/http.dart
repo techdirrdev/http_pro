@@ -4,24 +4,12 @@ import 'package:http_parser/http_parser.dart';
 import 'package:http_pro/file_data.dart';
 
 /// Sends an HTTP HEAD request with the given headers to the given URL.
-///
-/// This automatically initializes a new [Client] and closes that client once
-/// the request is complete. If you're planning on making multiple requests to
-/// the same server, you should use a single [Client] for all of those requests.
-///
-/// For more fine-grained control over the request, use [Request] instead.
 Future<http_request.Response> head(String url,
     {Map<String, String>? headers}) async {
   return await http_request.get(Uri.parse(url), headers: headers);
 }
 
 /// Sends an HTTP GET request with the given headers to the given URL.
-///
-/// This automatically initializes a new [Client] and closes that client once
-/// the request is complete. If you're planning on making multiple requests to
-/// the same server, you should use a single [Client] for all of those requests.
-///
-/// For more fine-grained control over the request, use [Request] instead.
 Future<http_request.Response> get(String url,
     {Map<String, String>? headers}) async {
   return await http_request.get(Uri.parse(url), headers: headers);
@@ -42,9 +30,6 @@ Future<http_request.Response> get(String url,
 /// `"application/x-www-form-urlencoded"`; this cannot be overridden.
 ///
 /// [encoding] defaults to [utf8].
-///
-/// For more fine-grained control over the request, use [Request] or
-/// [StreamedRequest] instead.
 Future<http_request.Response> post(String url,
     {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
   return await http_request.post(Uri.parse(url),
@@ -66,9 +51,6 @@ Future<http_request.Response> post(String url,
 /// `"application/x-www-form-urlencoded"`; this cannot be overridden.
 ///
 /// [encoding] defaults to [utf8].
-///
-/// For more fine-grained control over the request, use [Request] or
-/// [StreamedRequest] instead.
 Future<http_request.Response> put(String url,
     {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
   return await http_request.post(Uri.parse(url),
@@ -91,9 +73,6 @@ Future<http_request.Response> put(String url,
 /// `"application/x-www-form-urlencoded"`; this cannot be overridden.
 ///
 /// [encoding] defaults to [utf8].
-///
-/// For more fine-grained control over the request, use [Request] or
-/// [StreamedRequest] instead.
 Future<http_request.Response> patch(String url,
     {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
   return await http_request.post(Uri.parse(url),
@@ -101,12 +80,6 @@ Future<http_request.Response> patch(String url,
 }
 
 /// Sends an HTTP DELETE request with the given headers to the given URL.
-///
-/// This automatically initializes a new [Client] and closes that client once
-/// the request is complete. If you're planning on making multiple requests to
-/// the same server, you should use a single [Client] for all of those requests.
-///
-/// For more fine-grained control over the request, use [Request] instead.
 Future<http_request.Response> delete(String url,
     {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
   return await http_request.post(Uri.parse(url),
@@ -114,10 +87,6 @@ Future<http_request.Response> delete(String url,
 }
 
 /// Sends an HTTP multipart request with the given headers or body or file to the given URL.
-///
-/// This automatically initializes a new [Client] and closes that client once
-/// the request is complete. If you're planning on making multiple requests to
-/// the same server, you should use a single [Client] for all of those requests.
 Future<http_request.Response> multipart(String url,
     {String method = 'POST',
     Map<String, String>? headers,
