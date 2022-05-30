@@ -27,8 +27,6 @@ For help getting started with Flutter, view the online
 
 Please follow this [example](https://github.com/techdirrdev/http_pro/tree/master/example) here.
 
-### Dropdown - Single Selection and Multi Selection
-
 Send request
 ```dart
 import 'package:http_pro/http.dart' as http;
