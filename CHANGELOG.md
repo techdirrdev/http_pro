@@ -1,3 +1,7 @@
+## 1.2.0
+
+* A composable, Future-based library for making HTTP requests with multipart.
+
 ## 1.1.0
 
 * A composable, Future-based library for making HTTP requests with multipart.
