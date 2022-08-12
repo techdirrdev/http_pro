@@ -1,7 +1,7 @@
 name: http_pro
 description: A composable, Future-based library for making HTTP requests with multipart.
 repository: https://github.com/techdirrdev/http_pro.git
-version: 1.3.0
+version: 1.4.0
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
