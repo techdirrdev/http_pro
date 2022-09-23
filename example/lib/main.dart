@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http_pro/http.dart' as http;
+import 'package:http_pro/response.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +39,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   _apiCall() async {
-    var res = await http.get("https://www.google.com");
+    Response res = await http.get("https://www.google.com");
     if (res.statusCode == 200) {
       log("success");
       setState(() {

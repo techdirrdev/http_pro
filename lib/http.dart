@@ -2,17 +2,22 @@ import 'dart:convert';
 import 'package:http/http.dart' as http_request;
 import 'package:http_parser/http_parser.dart';
 import 'package:http_pro/file_data.dart';
-
-/// Sends an HTTP HEAD request with the given headers to the given URL.
-Future<http_request.Response> head(String url,
-    {Map<String, String>? headers}) async {
-  return await http_request.get(Uri.parse(url), headers: headers);
-}
+import 'package:http_pro/response.dart';
 
 /// Sends an HTTP GET request with the given headers to the given URL.
-Future<http_request.Response> get(String url,
-    {Map<String, String>? headers}) async {
-  return await http_request.get(Uri.parse(url), headers: headers);
+Future<Response> get(String url, {Map<String, String>? headers}) async {
+  http_request.Response apiResponse =
+      await http_request.get(Uri.parse(url), headers: headers);
+  return Response(
+      apiResponse.statusCode,
+      apiResponse.body,
+      apiResponse.bodyBytes,
+      apiResponse.contentLength,
+      apiResponse.headers,
+      apiResponse.isRedirect,
+      apiResponse.persistentConnection,
+      apiResponse.reasonPhrase,
+      apiResponse.request);
 }
 
 /// Sends an HTTP POST request with the given headers and body to the given URL.
@@ -30,10 +35,20 @@ Future<http_request.Response> get(String url,
 /// `"application/x-www-form-urlencoded"`; this cannot be overridden.
 ///
 /// [encoding] defaults to [utf8].
-Future<http_request.Response> post(String url,
+Future<Response> post(String url,
     {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
-  return await http_request.post(Uri.parse(url),
+  http_request.Response apiResponse = await http_request.post(Uri.parse(url),
       headers: headers, body: body, encoding: encoding);
+  return Response(
+      apiResponse.statusCode,
+      apiResponse.body,
+      apiResponse.bodyBytes,
+      apiResponse.contentLength,
+      apiResponse.headers,
+      apiResponse.isRedirect,
+      apiResponse.persistentConnection,
+      apiResponse.reasonPhrase,
+      apiResponse.request);
 }
 
 /// Sends an HTTP PUT request with the given headers and body to the given URL.
@@ -51,10 +66,20 @@ Future<http_request.Response> post(String url,
 /// `"application/x-www-form-urlencoded"`; this cannot be overridden.
 ///
 /// [encoding] defaults to [utf8].
-Future<http_request.Response> put(String url,
+Future<Response> put(String url,
     {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
-  return await http_request.post(Uri.parse(url),
+  http_request.Response apiResponse = await http_request.post(Uri.parse(url),
       headers: headers, body: body, encoding: encoding);
+  return Response(
+      apiResponse.statusCode,
+      apiResponse.body,
+      apiResponse.bodyBytes,
+      apiResponse.contentLength,
+      apiResponse.headers,
+      apiResponse.isRedirect,
+      apiResponse.persistentConnection,
+      apiResponse.reasonPhrase,
+      apiResponse.request);
 }
 
 /// Sends an HTTP PATCH request with the given headers and body to the given
@@ -73,21 +98,57 @@ Future<http_request.Response> put(String url,
 /// `"application/x-www-form-urlencoded"`; this cannot be overridden.
 ///
 /// [encoding] defaults to [utf8].
-Future<http_request.Response> patch(String url,
+Future<Response> patch(String url,
     {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
-  return await http_request.post(Uri.parse(url),
+  http_request.Response apiResponse = await http_request.post(Uri.parse(url),
       headers: headers, body: body, encoding: encoding);
+  return Response(
+      apiResponse.statusCode,
+      apiResponse.body,
+      apiResponse.bodyBytes,
+      apiResponse.contentLength,
+      apiResponse.headers,
+      apiResponse.isRedirect,
+      apiResponse.persistentConnection,
+      apiResponse.reasonPhrase,
+      apiResponse.request);
 }
 
 /// Sends an HTTP DELETE request with the given headers to the given URL.
-Future<http_request.Response> delete(String url,
+Future<Response> delete(String url,
     {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
-  return await http_request.post(Uri.parse(url),
+  http_request.Response apiResponse = await http_request.post(Uri.parse(url),
       headers: headers, body: body, encoding: encoding);
+  return Response(
+      apiResponse.statusCode,
+      apiResponse.body,
+      apiResponse.bodyBytes,
+      apiResponse.contentLength,
+      apiResponse.headers,
+      apiResponse.isRedirect,
+      apiResponse.persistentConnection,
+      apiResponse.reasonPhrase,
+      apiResponse.request);
+}
+
+/// Sends an HTTP HEAD request with the given headers to the given URL.
+Future<Response> head(String url, {Map<String, String>? headers}) async {
+  http_request.Response apiResponse =
+      await http_request.get(Uri.parse(url), headers: headers);
+  return Response(
+      apiResponse.statusCode,
+      apiResponse.body,
+      apiResponse.bodyBytes,
+      apiResponse.contentLength,
+      apiResponse.headers,
+      apiResponse.isRedirect,
+      apiResponse.persistentConnection,
+      apiResponse.reasonPhrase,
+      apiResponse.request);
 }
 
 /// Sends an HTTP multipart request with the given headers or body or file to the given URL.
-Future<http_request.Response> multipart(String url,
+Future<Response> multipart(String url,
     {String method = 'POST',
     Map<String, String>? headers,
     Map<String, String>? body,
@@ -112,6 +173,16 @@ Future<http_request.Response> multipart(String url,
       }
     }
   }
-
-  return await http_request.Response.fromStream(await request.send());
+  http_request.Response apiResponse =
+      await http_request.Response.fromStream(await request.send());
+  return Response(
+      apiResponse.statusCode,
+      apiResponse.body,
+      apiResponse.bodyBytes,
+      apiResponse.contentLength,
+      apiResponse.headers,
+      apiResponse.isRedirect,
+      apiResponse.persistentConnection,
+      apiResponse.reasonPhrase,
+      apiResponse.request);
 }
