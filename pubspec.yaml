@@ -4,7 +4,7 @@ repository: https://github.com/techdirrdev/http_pro.git
 version: 1.5.0
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.16.2 <3.7.7"
   flutter: ">=2.5.0"
 
 dependencies:
@@ -14,12 +14,12 @@ dependencies:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
   http: ^0.13.5
-  http_parser: ^4.0.1
+  http_parser: ^4.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
   lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
